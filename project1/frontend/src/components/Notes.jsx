@@ -33,6 +33,9 @@ function Note() {
         })}
 
     function createNote(event) {
+        event.preventDefault();
+        if(event.target.reportValidity()){ // use can also use e.target.reportValidity
+
         axios({
           method: "POST",
           url:"/notes/",
@@ -49,8 +52,9 @@ function Note() {
           title: "",
           content: ""}))
         setExpanded(false)
-        event.preventDefault()
     }
+
+  }
 
     function DeleteNote(id) {
         axios({
@@ -77,10 +81,10 @@ function Note() {
 
      <div className=''>
 
-        <form className="create-note">
-          {isExpanded && <input onChange={handleChange} text={formNote.title} name="title" placeholder="Title" value={formNote.title} />}
-          <textarea onClick={NoteShow} onChange={handleChange} name="content" placeholder="Take a note..." rows={rows} value={formNote.content} />
-          {isExpanded && <button onClick={createNote}>
+        <form   onSubmit={createNote}  noValidate className="create-note">
+          {isExpanded && <input onChange={handleChange} text={formNote.title} required name="title" placeholder="Title" value={formNote.title} />}
+          <textarea onClick={NoteShow} onChange={handleChange} name="content" required placeholder="Take a note..." rows={rows} value={formNote.content} />
+          {isExpanded && <button type="submit" >
                             <AddIcon />
                         </button>}
         </form>

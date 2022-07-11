@@ -17,9 +17,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# If you choose to place your 'frontend' folder outside the Django directory, 
+# If you choose to place your 'frontend' folder outside the Django directory,
 # you would need to get the path to the parent directory of the Django directory
-# so you can uncomment the line below and also the other codes in templates and 
+# so you can uncomment the line below and also the other codes in templates and
 # staticfiles sections
 
 # REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #my_apps
+    # my_apps
     'core',
     'rest_framework',
 ]
@@ -138,3 +138,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend', 'build', 'static')]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
